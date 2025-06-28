@@ -1,0 +1,22 @@
+<div class="grades-container">
+  <div class="header-section">
+    <h2>רשימת ציונים</h2>
+    <button routerLink="/" class="back-btn">
+      ← חזרה לדף הבית
+    </button>
+  </div>
+
+  <div class="students-grid">
+    <div *ngFor="let student of students" class="student-card">
+      <div class="student-header">
+        <h3>תלמידה {{ student.id }}</h3>
+      </div>
+      <div class="marks-list">
+        <div *ngFor="let mark of student.marks" class="mark-item">
+          <span class="subject">{{ mark.subject }}:</span>
+          <span class="score">{{ mark.mark }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

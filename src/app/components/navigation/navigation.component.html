@@ -1,0 +1,23 @@
+<div class="navigation-container">
+  <header class="header">
+    <h1 class="main-title">{{ pageTitle }}</h1>
+    <nav class="nav-menu">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+        דף הבית - בית ספר
+      </a>
+      <a routerLink="/students" routerLinkActive="active" class="nav-item">
+        תלמידות
+      </a>
+      <a routerLink="/teachers" routerLinkActive="active" class="nav-item">
+        מורות
+      </a>
+      <a routerLink="/details" routerLinkActive="active" class="nav-item">
+        פרטים
+      </a>
+    </nav>
+  </header>
+  
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div> 

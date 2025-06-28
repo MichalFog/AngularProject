@@ -1,0 +1,127 @@
+<div class="details-container">
+  <h2>פרטי תלמידה</h2>
+  
+  <form [formGroup]="detailsForm" (ngSubmit)="onSubmit()" class="details-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label>שם פרטי *</label>
+        <input type="text" formControlName="firstName" placeholder="הזן שם פרטי">
+        <div class="error" *ngIf="detailsForm.get('firstName')?.invalid && detailsForm.get('firstName')?.touched">
+          שם פרטי הוא שדה חובה
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>טלפון *</label>
+        <input type="tel" formControlName="phone" placeholder="הזן מספר טלפון">
+        <div class="error" *ngIf="detailsForm.get('phone')?.invalid && detailsForm.get('phone')?.touched">
+          מספר טלפון לא תקין
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>ת"ז *</label>
+        <input type="text" formControlName="id" placeholder="הזן ת"ז">
+        <div class="error" *ngIf="detailsForm.get('id')?.invalid && detailsForm.get('id')?.touched">
+          ת"ז לא תקינה
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>גיל *</label>
+        <input type="number" formControlName="age" placeholder="הזן גיל">
+        <div class="error" *ngIf="detailsForm.get('age')?.invalid && detailsForm.get('age')?.touched">
+          יש להזין גיל תקין
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>כיתה *</label>
+        <select formControlName="class">
+          <option value="">בחרי כיתה</option>
+          <option value="י' א">י' א</option>
+          <option value="י' ב">י' ב</option>
+          <option value="י' ג">י' ג</option>
+          <option value="י"א א">י"א א</option>
+          <option value="י"א ב">י"א ב</option>
+          <option value="י"א ג">י"א ג</option>
+          <option value="י"ב א">י"ב א</option>
+          <option value="י"ב ב">י"ב ב</option>
+          <option value="י"ב ג">י"ב ג</option>
+        </select>
+        <div class="error" *ngIf="detailsForm.get('class')?.invalid && detailsForm.get('class')?.touched">
+          כיתה היא שדה חובה
+        </div>
+      </div>
+      
+      <div class="form-group" *ngIf="showElementarySchool">
+        <label>באיזה בית ספר יסודי למדת *</label>
+        <input type="text" formControlName="elementarySchool" placeholder="הזן שם בית ספר">
+        <div class="error" *ngIf="detailsForm.get('elementarySchool')?.invalid && detailsForm.get('elementarySchool')?.touched">
+          באיזה בית ספר יסודי למדת הוא שדה חובה
+        </div>
+      </div>
+    </div>
+
+    <div class="address-section">
+      <h3>כתובת</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>עיר *</label>
+          <input type="text" formControlName="city" placeholder="הזן עיר">
+          <div class="error" *ngIf="detailsForm.get('city')?.invalid && detailsForm.get('city')?.touched">
+            עיר היא שדה חובה
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>רחוב *</label>
+          <input type="text" formControlName="street" placeholder="הזן רחוב">
+          <div class="error" *ngIf="detailsForm.get('street')?.invalid && detailsForm.get('street')?.touched">
+            רחוב הוא שדה חובה
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>בית *</label>
+          <input type="text" formControlName="house" placeholder="הזן מספר בית">
+          <div class="error" *ngIf="detailsForm.get('house')?.invalid && detailsForm.get('house')?.touched">
+            בית הוא שדה חובה
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>דירה *</label>
+          <input type="text" formControlName="apartment" placeholder="הזן מספר דירה">
+          <div class="error" *ngIf="detailsForm.get('apartment')?.invalid && detailsForm.get('apartment')?.touched">
+            דירה היא שדה חובה
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="detailsForm.invalid || isLoading" class="submit-btn">
+        {{ isLoading ? 'שולח...' : 'שלח פרטים' }}
+      </button>
+    </div>
+  </form>
+
+  <div class="success-message" *ngIf="showSuccess">
+    <h3>✅ הצלחה!</h3>
+    <p>הפרטים נקלטו בהצלחה במערכת</p>
+  </div>
+
+  <div class="error-message" *ngIf="showErrors">
+    <h3>❌ שגיאות:</h3>
+    <ul>
+      <li *ngFor="let error of errors">{{ error }}</li>
+    </ul>
+  </div>
+</div> 

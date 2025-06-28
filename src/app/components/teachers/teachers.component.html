@@ -1,0 +1,50 @@
+<div class="teachers-container">
+  <div class="header-section">
+    <h2>רשימת המורות</h2>
+    <button routerLink="/" class="back-btn">
+      ← חזרה לדף הבית
+    </button>
+  </div>
+
+  <div class="teachers-grid">
+    <div *ngFor="let teacher of teachers" class="teacher-card">
+      <div class="teacher-header">
+        <h3>{{ teacher.firstName }} {{ teacher.lastName }}</h3>
+        <span class="teacher-id">מזהה: {{ teacher.id }}</span>
+      </div>
+      
+      <div class="teacher-info">
+        <div class="info-row">
+          <strong>כיתה:</strong>
+          <span>{{ teacher.class }}</span>
+        </div>
+        <div class="info-row">
+          <strong>מקצוע:</strong>
+          <span>{{ teacher.subject }}</span>
+        </div>
+        <div class="info-row">
+          <strong>טלפון:</strong>
+          <span>{{ teacher.phone }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-section">
+    <h3>סטטיסטיקות</h3>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-number">{{ teachers.length }}</span>
+        <span class="stat-label">סה"כ מורות</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">מקצועות שונים</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">כיתות</span>
+      </div>
+    </div>
+  </div>
+</div> 

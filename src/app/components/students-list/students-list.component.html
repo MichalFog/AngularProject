@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="header">
+    <h1>מערכת ציונים לתלמידות</h1>
+    <div class="header-buttons">
+      <button 
+        class="load-btn" 
+        (click)="loadStudentsWithGrades()" 
+        [disabled]="isLoading">
+        {{ isLoading ? 'טוען...' : 'קבל רשימת תלמידות' }}
+      </button>
+      <button routerLink="/" class="back-btn">
+        ← חזרה לדף הבית
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>טוען נתונים...</p>
+  </div>
+
+  <div *ngIf="showGrades && studentsWithGrades.length > 0" class="students-grid">
+    <div *ngFor="let studentGrade of studentsWithGrades" class="student-card">
+      <div class="student-header">
+        <h3>{{ studentGrade.student.name }}</h3>
+        <span class="student-id">מזהה: {{ studentGrade.student.id }}</span>
+      </div>
+      
+      <div class="grades-section">
+        <h4>ציונים:</h4>
+        <div class="grades-list">
+          <div *ngFor="let grade of studentGrade.grades" class="grade-item">
+            <span class="subject">{{ grade.subject }}:</span>
+            <span class="score" [class.high-score]="grade.score >= 90" 
+                  [class.medium-score]="grade.score >= 80 && grade.score < 90"
+                  [class.low-score]="grade.score < 80">
+              {{ grade.score }}
+            </span>
+          </div>
+        </div>
+        
+        <div class="average-section">
+          <strong>ממוצע: {{ calculateAverage(studentGrade.grades) }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showGrades && studentsWithGrades.length === 0" class="no-data">
+    <p>לא נמצאו תלמידות</p>
+  </div>
+</div> 

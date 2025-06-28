@@ -1,0 +1,8 @@
+<app-navigation 
+  [pageTitle]="title" 
+  (footerText)="onFooterTextReceived($event)">
+</app-navigation>
+
+<footer *ngIf="footerText" class="footer">
+  <p>{{ footerText }}</p>
+</footer> 
